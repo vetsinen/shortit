@@ -1,0 +1,15 @@
+from https://martinjoo.dev/laravel-11-routeserviceprovider
+
+In Laravel 11, the RouteServiceProvider.php file is removed. So the question is how can we configure the routes?
+
+Now in Laravel 11, we need to use the bootstrap/app.php file again:
+
+return Application::configure(basePath: dirname(__DIR__))
+  ->withRouting(
+    web: __DIR__.'/../routes/web.php',
+    api: __DIR__.'/../routes/api.php',
+    commands: __DIR__.'/../routes/console.php',
+    health: '/up',
+    apiPrefix: '/api',
+  )
+We can check if it works by running the php artisan route:list command:
