@@ -1,15 +1,18 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UrlController;
 
 Route::get('/', function () {
+    return view('welcome');
+});
+Route::get('/test', function () {
     return response()->json([
         'status' => 'success',
         'message' => 'Data retrieved successfully!',
         'data' => [
-            'key1' => 'value1',
-            'key2' => 'value2',
+            'key1' => '42',
         ],
     ]);
-    //return view('welcome');
 });
+Route::get('/{hash}', [UrlController::class, 'redirect']);

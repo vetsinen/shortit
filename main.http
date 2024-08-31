@@ -3,6 +3,6 @@ POST http://localhost/api/shorten
 Content-Type: application/json
 
 {
-  "url": "https://jobs.dou.ua/companies/faceit/vacancies/250489/",
+  "url": "http://yourapi.com/api/v1/resource?file=../../etc/passwd",
   "value": "content"
 }
