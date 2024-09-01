@@ -21,6 +21,7 @@ class UrlController extends Controller
         $existingUrl = Url::where('original_url', $originalUrl)->first();
         if ($existingUrl) {
             return response()->json([
+                'status' => 'success',
                 'short_url' => url($existingUrl->short_url),
                 'message' => 'URL already exists'
             ]);

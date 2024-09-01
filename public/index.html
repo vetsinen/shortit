@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+
+    <form id="url-form" action="/api/shorten" method="POST">
+        <label for="url">Enter URL to shorten:</label>
+        <input type="text" v-model="url" name="url" id="url"  required>
+        <button v-on:click="shorten" type="button">Shorten</button>
+    </form>
+    <div v-if="short_url"><a :href="short_url">{{ short_url }}</a></div>
+
+</div>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            url: "https://laravel.com/docs/11.x/frontend#inertia",
+            short_url: "",
+            message: 'Hello Vue!'
+        },
+        methods: {
+            shorten: async function () {
+                try {
+                    const response = await fetch('http://localhost/api/shorten', {
+                        method: 'POST',
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Accept": "application/json"
+                        },
+                        body: JSON.stringify({
+                            url: this.url}),
+                    });
+
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+
+                    // Handle the response
+                    const data = await response.json();
+                    this.short_url = data.short_url;
+                    console.log('short url:', data.short_url);
+                } catch (error) {
+                    console.error('Error:', error);
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>
