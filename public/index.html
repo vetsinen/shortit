@@ -8,22 +8,20 @@
 </head>
 <body>
 <div id="app">
-
     <form id="url-form" action="/api/shorten" method="POST">
         <label for="url">Enter URL to shorten:</label>
         <input type="text" v-model="url" name="url" id="url"  required>
         <button v-on:click="shorten" type="button">Shorten</button>
     </form>
     <div v-if="short_url"><a :href="short_url">{{ short_url }}</a></div>
-
 </div>
+
 <script>
     const app = new Vue({
         el: '#app',
         data: {
             url: "https://laravel.com/docs/11.x/frontend#inertia",
             short_url: "",
-            message: 'Hello Vue!'
         },
         methods: {
             shorten: async function () {

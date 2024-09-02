@@ -68,22 +68,4 @@ class UrlController extends Controller
             return false;
         }
     }
-
-//        return response()->json([
-//            'status' => 'success',
-//            'message' => 'Data retrieved successfully!',
-//            'data' => [
-//                'short' => 'https://ur0.jp/'.Str::random(6),
-//                'original' => $originalUrl,
-//            ],
-//        ]);
-
-    private function generateShortUrl()
-    {
-        do {
-            $hash = Str::random(6);
-        } while (Url::where('short_url', $hash)->exists());
-
-        return $hash;
-    }
 }

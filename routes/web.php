@@ -5,7 +5,6 @@ use App\Http\Controllers\UrlController;
 
 Route::get('/', function () {
     return response()->file(public_path('index.html'));
-    //return view('welcome');
 });
 Route::get('/test', function () {
     return response()->json([
